@@ -1,0 +1,64 @@
+| <?php $html = str_get_html(get_the_content());
+//- | echo $html;
+| $iframe = $html->find('iframe', 0);
+| $gallery = $html->find('.wp-block-gallery', 0);
+
+//- Доделать на самом деле, может через метки !!!
+//- Разобраться с JS фильтром
+
+//- | $filter_class = 'photo';
+
+| if(has_tag('releases')) $filter_class = 'release';
+| if($iframe) $filter_class = 'video';
+| if($gallery) $filter_class = 'gallery';
+| ?>
+
+
+
+.blog-box-1.black-background(class!="<?php echo $filter_class; ?>")
+	|
+	| <?php $link = get_the_permalink(); ?>
+	|
+	.date
+		p
+			| <?php 
+			| $date = explode(' ', get_the_time('j M Y')); ?>
+			| 
+			span <?php echo $date[0]; ?>/
+			| <?php echo mb_strtolower($date[1]); ?>.<?php echo $date[2]; ?>
+			em <?php the_author(); ?>
+
+
+	| <?php if($iframe) : ?>
+	//- figure.vimeo
+	.video-wrapper
+		figure
+			| <?php echo $iframe ?>
+			//- a(href!='<?php echo $iframe->src; ?>')
+			//- 	img(src='images/blog/vimeo.jpg', alt='image')
+
+	| <?php elseif($gallery) : ?>
+	//- figure.vimeo
+	.blog-card-slider.owl-carousel.owl-theme
+		| <?php foreach($gallery->find('img') as $img) : ?>
+		.item
+			| <?php
+			| echo $img; ?>
+		| <?php endforeach; ?>
+
+	|
+	| <?php
+	| else :
+	| $link_trumb = get_the_post_thumbnail_url();
+	| if($link_trumb) : ?>
+	a.animsition-link(href!='<?php echo $link; ?>')
+		img(src!='<?php echo $link_trumb; ?>', alt='')
+	| <?php endif; ?>
+
+	| <?php endif; ?>
+
+	a.animsition-link(href!='<?php echo $link; ?>')
+		h6 <?php the_title(); ?>
+	.p-box
+		p <?php the_excerpt(); ?>
+	a.animsition-link.blog-link.chaffle(href!='<?php echo $link; ?>', data-lang='ru') читать

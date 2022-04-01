@@ -1,0 +1,84 @@
+/* .fast_audio_check strong{
+	text-align: center; 
+	text-transform: none; 
+	margin-top: 5px;
+}
+
+.fast_audio_check span{
+
+}
+
+
+
+
+*/
+// .fast_audio_check #FastCH_songname {
+// 	text-align: center;
+//     text-transform: none;
+//     margin-top: 5px;
+//     letter-spacing: 1.2px;
+//     margin-bottom: 0px;
+// }
+/* .fast_audio_check p span{
+    padding: 9px 25px;
+} */
+
+#FastCH_songname {
+	position: relative;
+	// text-align: center;
+	margin-top: 25px;
+
+	span {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+
+		font-size: 14px; 
+		line-height:22px;
+		letter-spacing:3px;
+		color: #fff;
+		padding:12px 25px;
+		background:rgba(0,0,0,.9);
+
+		opacity: 0;
+		transition: 250ms ease all;
+	}
+
+	span.isPlayed {
+		opacity: 1;
+	}
+}
+
+
+.waveform-wrapper {
+	min-height: 100px;
+	opacity: 0.5; //0
+	transition-duration: .5s;
+
+	&.wave-loaded {
+		opacity: 0.5;
+	}
+}
+
+.transp-bar {
+	width: 111px;
+    margin: auto;
+}
+
+.transp-bar ul{
+	padding-top: 15px;
+	/* padding-left: 50%;
+	margin-left: -41px; */
+}
+
+.transp-bar ul li {
+	 display: inline-block;
+	 padding: 0px 3px 0px 3px;
+}
+
+.transp-bar ul li img{
+	opacity: 0.7;
+	height: 20px;
+}
+
+

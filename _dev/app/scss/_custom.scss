@@ -1,0 +1,38 @@
+.audio-showreel {
+  height: 100vh;
+  position: relative;
+
+  &-wrapper {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    z-index: 10;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  .video-wrapper,
+  figure.vimeo,
+  figure.youtube {
+    padding-bottom: 40.42%;
+  }
+
+  h2, p {
+    color: white;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.small-text {
+
+}
+
+#vk_comments {
+  max-width:  700px;
+  margin: auto;
+}

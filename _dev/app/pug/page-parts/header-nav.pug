@@ -1,0 +1,39 @@
+
+header.cd-header
+	.container
+		.twelve.columns
+			.logo-wrap
+				a(href='/')
+					img(src!='<?php echo get_template_directory_uri(); ?>/img/logo.png' alt='')
+			a.cd-primary-nav-trigger(href='#0')
+				span.cd-menu-text
+				span.cd-menu-icon
+nav
+	.cd-primary-nav
+		ul.cd-scndr-nav
+			li.cd-label
+				a(href='#top').curent-nav-color.js-scroll Главная
+			li.cd-label
+				a(href='#artists').js-scroll Артисты
+			li.cd-label
+				a(href='#price').js-scroll Стоимость
+			li.cd-label
+				a(href='#aboutme').js-scroll Обо мне
+			li.cd-label
+				a(href='#feedback').js-scroll Отзывы
+			li.cd-label
+				a(href='#contact').js-scroll Контакты				
+			li.cd-label
+				a(href='/faq').js-scroll F.A.Q
+			li.cd-label
+				a(href='/blog').js-scroll Блог			
+		.social-nav
+			ul.list-social-nav
+				li.icon-soc-nav.tipped(data-title='YouTube' data-tipper-options='{"direction":"top","follow":"true"}')
+					a(href='https://www.youtube.com/channel/UCCSy9CRsAnc7RdXp38crhqQ' target='_blank') &#xf16a;
+				li.icon-soc-nav.tipped(data-title='VK' data-tipper-options='{"direction":"top","follow":"true"}')
+					a(href='https://vk.com/sheremet_records' target='_blank') &#xf189;
+				li.icon-soc-nav.tipped(data-title='Instagram' data-tipper-options='{"direction":"top","follow":"true"}')
+					a(href='https://www.instagram.com/sheremet_records' target='_blank') &#xf16d;
+				li.icon-soc-nav.tipped(data-title='soundcloud' data-tipper-options='{"direction":"top","follow":"true"}')
+					a(href='https://soundcloud.com/ernestsheremet' target='_blank') &#xf1be;

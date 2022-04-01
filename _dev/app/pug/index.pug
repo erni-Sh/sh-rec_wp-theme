@@ -1,0 +1,329 @@
+//- | 
+//- | <?php
+//- | include "functions.php"
+//- | ?>
+extends ./skeleton/tmpl.pug
+
+block main
+  main.cd-main-content#top
+    .first_background
+      .hero-top
+        .container
+          .twelve.columns
+            #owl-text-home.owl-carousel.owl-theme
+              .item
+                h2 Сведение
+              .item
+                h2 Мастеринг
+              .item
+                h2 Саунд-дизайн
+            p звукорежиссер Эрнест Шеремет
+            //- a(href='#contact')
+            //-   .button.button--moema.button--text-thick.button--text-upper.button--size-s получить консультацию
+        .container
+          .twelve.columns
+            .fast_audio_check
+              | <?php fastPlayer($music_BD[fast_audio_check]); ?>
+    
+    // =================== ARTISTs ===========================
+    .container-1
+      .container.header-big-text
+        .twelve.columns
+          .title-page-text.padding-top-bottom-title
+            h2#artists АРТИСТЫ
+            // <p>которая вдохновляет</p>
+            .small-text.text-center При нажатии на изображение откроется карточка исполнителя
+      .content
+        // trianglify pattern container
+        .pattern.pattern--hidden
+        // cards
+        .wrapper
+          | <?php 
+          | $id = 0;
+          | foreach($music_BD as $greatBand => $band_BD) :
+          | if($greatBand!= 'fast_audio_check') :
+          | getArtistCard($greatBand, $band_BD, $id);
+          | $id++;
+          | endif;
+          | endforeach;
+          | ?>
+          
+        // /cards
+      // /content
+    .section.padding-bottom
+      a(href='#contact').js-scroll
+        .button.button--moema.button--text-thick.button--text-upper.button--size-s заказать сведение
+          br
+          | моей песни
+    
+    .audio-showreel.black-background
+      .audio-showreel-wrapper
+        .container.header-big-text
+          .title-page-text.padding-top-bottom-title
+            h2 AUDIO SHOWREEL
+            p от киностудии ALTAMONTE
+
+          //- .one.columns
+          .twelve.columns
+            .video-wrapper
+              figure.vimeo
+                a(href="https://player.vimeo.com/video/574645019")
+                  img(src!="<?php echo get_template_directory_uri(); ?>/img/portfolio/audioshowreel.jpg" alt="image")
+          //- .one.columns
+
+ 
+    // ============================= СТОИМОСТЬ ======================================
+    .clear
+    .section
+      .container.header-big-text
+        .twelve.columns
+          .title-page-text.padding-top-bottom-title
+            h2#price Стоимость
+            // <p>Ценностность</p>
+      .container
+        .seven.columns
+          .img-wrap
+            img(src!='<?php echo get_template_directory_uri(); ?>/img/price/mixer.jpg' alt='')
+        .five.columns
+          .project-details
+            h5 Сведение
+            p &#9679; Мультиканальное аудио-микширование
+            p &#9679; Тюнинг и выравнивание включены
+            p &#9679; Аранжировка и дозапись не включены
+            p &#9679; Опция пред-мастеринга
+            p &#9679; Стоимость может измениться в любую сторону в зависимости от сложности проекта 
+            p &#9679; Формат аудио-файлов: 48000Гц и выше, 24/32 бита
+            a(href='#contact')
+              .button.button--moema.button--text-thick.button--text-upper.button--size-s узнать стоимость
+            // <p style="float: right;"><span>12 000</span> руб</p>
+        .crear
+        .seven.columns
+          .img-wrap
+            img(src!='<?php echo get_template_directory_uri(); ?>/img/price/vinyl.jpg' alt='')
+        .five.columns
+          .project-details
+            h5 МАСТЕРИНГ
+            p &#9679; Финализация релиза
+            p &#9679; Мастеринг стерео-файлов
+            // <p style="float: right;"><span>1 500</span> руб/трек</p><br>
+            p &#9679; Стем-мастеринг
+            // <p style="float: right;"><span>3 000</span> руб/трек</p><br>
+            p &#9679; Формат аудио-файлов: 48000Гц и выше, 32 бита
+            a(href='#contact')
+              .button.button--moema.button--text-thick.button--text-upper.button--size-s узнать стоимость
+        .crear
+        .seven.columns
+          .img-wrap
+            img(src!='<?php echo get_template_directory_uri(); ?>/img/price/notes.jpg' alt='')
+        .five.columns
+          .project-details
+            h5 КОНСУЛЬТАЦИЯ
+            p &#9679; Консультация по аранжировке (логика музыкальной формы, тембральные характеристики инструментов, нюансы исполнения, корректность сэмплов, соответсвие жанру и прочее)
+            br
+            p &#9679; Консультация по сведению (проработанность пространства, ошибки детализации, баланса, проблемы частотного спектра и др.)
+            // <p style="float: right;"><span>1 000</span> руб/трек</p>
+            a(href='#contact')
+              .button.button--moema.button--text-thick.button--text-upper.button--size-s узнать стоимость
+        .crear
+        .seven.columns
+          .img-wrap
+            img(src!='<?php echo get_template_directory_uri(); ?>/img/price/studio.jpg' alt='')
+        .five.columns
+          .project-details
+            h5 ИНДИВИДУАЛЬНОЕ ЗАНЯТИЕ
+            p &#9679; Индивидуальное online или offline занятие по звукозаписи, сведению, обработке
+            // <p>&#9679; Проводится по форме "вопрос-ответ"</p>
+            p &#9679; Разрешена аудио и видео запись для личного использования
+            // <p style="float: right;"><span>1 000</span> руб/час</p>
+            a(href='#contact')
+              .button.button--moema.button--text-thick.button--text-upper.button--size-s узнать стоимость
+
+
+    .section.padding-top-bottom-smaller.black-background
+      .container
+        .twelve.columns
+          #owl-logo.owl-carousel.owl-theme
+            .about-box
+              .icon
+                img(src!='<?php echo get_template_directory_uri(); ?>/img/musicInstr/019-electric guitar.png' height='50px' alt='')
+              h6 Rock
+              p Dругой Ветер
+            .about-box
+              .icon
+                img(src!='<?php echo get_template_directory_uri(); ?>/img/musicInstr/021-flute.png' height='50px' alt='')
+              h6 folk
+              p Камерный оркестр Карелия
+            .about-box
+              .icon
+                img(src!='<?php echo get_template_directory_uri(); ?>/img/musicInstr/009-cello.png' height='50px' alt='')
+              h6 Psyhobylli
+              p MEANTRAITORS
+            .about-box
+              .icon
+                img(src!='<?php echo get_template_directory_uri(); ?>/img/musicInstr/016-drum set.png' height='50px' alt='')
+              h6 Metal
+              p CORRODED REALMS
+            .about-box
+              .icon
+                img(src!='<?php echo get_template_directory_uri(); ?>/img/musicInstr/014-dj controller.png' height='50px' alt='')
+              h6 Electronic
+              p erni_Sh
+            .about-box
+              .icon
+                img(src!='<?php echo get_template_directory_uri(); ?>/img/musicInstr/035-microphone.png' height='50px' alt='')
+              h6 Singer-Songwriter
+              p Стас Тихо
+            .about-box
+              .icon
+                img(src!='<?php echo get_template_directory_uri(); ?>/img/musicInstr/026-guitar.png' height='50px' alt='')
+              h6 Acoustick
+              p Лева Сазонов
+            .about-box
+              .icon
+                img(src!='<?php echo get_template_directory_uri(); ?>/img/musicInstr/042-piano.png' height='50px' alt='')
+              h6 Melancholic rock
+              p KEIPA
+            //
+              <div class="item">
+              <img src!="<?php echo get_template_directory_uri(); ?>/img/logos/1.png" alt="">
+              </div>
+
+    //- .section
+    //-   .twelve.columns
+    //-     .img-wrap
+    //-       img(src!='<?php echo get_template_directory_uri(); ?>/img/SPB 2.jpg' alt='')
+    // ======================= ABOUT ME ===================================
+    .clear
+    .section
+      .container.header-big-text
+        .twelve.columns
+          .title-page-text.padding-top-bottom-title
+            h2#aboutme ОБО МНЕ
+            //- p Звукорежиссер
+    .clear
+    .section
+      .container
+        .seven.columns
+          #owl-image-slider.owl-carousel.owl-theme
+            .item
+              img(src!='<?php echo get_template_directory_uri(); ?>/img/me/about5.jpg' alt='')
+            .item
+              img(src!='<?php echo get_template_directory_uri(); ?>/img/me/about3.jpg' alt='')
+            .item
+              img(src!='<?php echo get_template_directory_uri(); ?>/img/me/about4.jpg' alt='')
+            .item
+              img(src!='<?php echo get_template_directory_uri(); ?>/img/me/erni_Sh 3.jpg' alt='')
+        .five.columns
+          .small-text
+            p Эрнест Шеремет / erni_Sh  - профессиональный звукорежиссер, саунддизайнер из Санкт-Петербурга
+            br
+            p &#9679; рожден на Казантипе в 1985 году
+            br
+            p &#9679; прошел огонь, воду и консерваторию
+            br
+            p &#9679; исследует звуковые переплетения в студии звукозаписи Сергея Наветного(экс-СПЛИН) ИНТЕРЗВУК (Санкт-Петербург). Записывал таких артистов как Александр Воронов(TequilaJazzz, Ноль), Андрей Кандаков, Валерий Белинов, Антон Давидянц, Аркадий Корнев
+            br
+            p &#9679; сейчас анализирует химические реакции гармоний в собственной звуковой лаборатории на платформе HIBOLL STUDIO(Санкт-Петербург). Подробнее на странице 
+              a(href='#music') МУЗЫКА
+            br
+            p &#9679; продолжает находиться в самом тесном творческом переплетении с Камерным Оркестром Карелия и развивает свой собственный музыкальный проект erni_Sh
+            br
+            p &#9679; занимается разработкой автоматических музыкальных сервисов
+            br
+    .clear
+    // ============== VK Coments ==========================
+    .section.padding-top-bottom-small
+      .container.header-big-text
+        .twelve.columns
+          .title-page-text.padding-top-bottom-title
+            h2#feedback Отзывы
+            // <p>Ценностность</p>
+      .twelve.columns
+        .container
+          #vk_comments
+    // =====================================
+    .clear
+    .section.padding-top-bottom-small.black-background
+      .container
+        .four.columns
+          .contact-block
+            .text
+              h6 Звони:
+              p
+                span &#xf095;
+                a(href='tel:+79633062201') +7(963)306-22-01
+        .four.columns
+          .contact-block
+            .text
+              h6 Приходи:
+              p
+                span &#xf041;
+                | Санкт-Петербург, наб.Черной речки 41В
+        .four.columns
+          .contact-block
+            .text
+              h6 Пиши:
+              p
+                span &#xf0e0;
+                a(href='mailto:ernest22@mail.ru?subject=Нужен звукорежиссер') ernest22@mail.ru
+    //- .clear
+    //- .section
+    //-   #cd-google-map
+    //-     #google-container
+    //-     #cd-zoom-in
+    //-     #cd-zoom-out
+    //-     address наб.Черной речки, 41В
+    //-       br
+    //-       | Санкт-Петербург
+    .clear
+    // =========================== ОБРАТНАЯ СВЯЗЬ ========================================
+    .clear
+    .section
+      .container.header-big-text
+        .twelve.columns
+          .title-page-text.padding-top-bottom-title
+            h2#contact Заполни форму
+            p Я отвечу в течение 24 часов
+            .small-text(style='text-align: center;')
+              br
+              | (Я не занимаюсь рассылкой спама!)
+      .clear
+      .section.padding-bottom
+        .container
+          form#ajax-form(name='ajax-form' action='mail-it1.php' method='post')
+            .three.columns
+            .six.columns
+              label(for='name')
+                span#err-name.error Напиши свое имя
+              input#name(name='name' type='text' placeholder='Имя: *')
+            .clear
+            .three.columns
+            .six.columns
+              label(for='email')
+                span#err-email.error Напиши свою почту
+                span#err-emailvld.error неправильный формат почты
+              input#email(name='email' type='text' placeholder='Почта: *')
+            .clear
+            .three.columns
+            .six.columns
+              label(for='message')
+              input#message(name='message' placeholder='Телефон')
+            .clear
+            .three.columns
+            .six.columns
+              #button-con
+                button#send(class='send_message button button--moema button--text-thick button--text-upper button--size-s' data-lang='en' onclick="ym(57382957, 'reachGoal', 'TARGET_FillForm); return true;") Отправить
+            .clear
+            #err-form.error.text-align-center Тут есть какая-то ошибка. Проверьте, пожалуйста!
+            #err-timedout.error.text-align-center Время подключения к серверу истекло!
+            #err-state.error
+          .clear
+          #ajaxsuccess(style='text-align: center;') Успешно отправлено!!!
+          .clear
+      // ====================================================
+
+  //- скрипты локальных страниц
+  script(type='text/javascript' src='https://vk.com/js/api/openapi.js?167')
+  script(type='text/javascript').
+    VK.init({apiId: 2759661, onlyWidgets: true});
+    VK.Widgets.Comments("vk_comments", {limit: 10, attach: "*"});

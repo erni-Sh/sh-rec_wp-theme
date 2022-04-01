@@ -1,0 +1,160 @@
+extends ./skeleton/tmpl.pug
+
+block main
+	main.cd-main-content
+		.section
+			.container.header-big-text
+				.twelve.columns
+					.title-page-text.padding-top-bottom-title
+						h2 БЛОГ
+						p все последние новости!
+		.clear
+		.section.padding-bottom
+			.container
+				.twelve.columns
+					#blog-filter
+						ul#filter
+							li
+								a.current(href='#', data-filter='*', title='') все
+							li
+								a(href='#', data-filter='.release', title='') релизы
+							li
+								a(href='#', data-filter='.gallery', title='') галерея
+							li
+								a(href='#', data-filter='.video', title='') видео
+							li
+								a(href='#', data-filter='.quote', title='') цитаты
+			.clear
+			#blog-grid
+
+				|
+				| <?php get_new_cards(2); ?>
+				|
+
+				//- .blog-box-1.black-background.quote
+				//- 	.date
+				//- 		p
+				//- 			span 07/
+				//- 			| apr.2015.
+				//- 			em John Doe
+				//- 	h6 "Talk is cheap. Show me the code."
+				//- 	.p-box
+				//- 		p LINUS TORVALDS
+				//- 	a.animsition-link.blog-link.chaffle(href='post.html', data-lang='en') read more
+				//- .blog-box-1.black-background.photo
+				//- 	.date
+				//- 		p
+				//- 			span 05/
+				//- 			| apr.2015.
+				//- 			em John Doe
+				//- 	a.animsition-link(href='post.html')
+				//- 		img(src='images/blog/5.jpg', alt='')
+				//- 	a.animsition-link(href='post.html')
+				//- 		h6 Moments From A Life
+				//- 	.p-box
+				//- 		p Etiam in nulla arcu, ut vehicula velit. Vivamus dapibus rutrum mi ut aliquam. In hac habitasse platea dictumst.
+				//- 	a.animsition-link.blog-link.chaffle(href='post.html', data-lang='en') read more
+				//- .blog-box-1.black-background.gallery
+				//- 	.date
+				//- 		p
+				//- 			span 01/
+				//- 			| apr.2015.
+				//- 			em John Doe
+				//- 	#owl-blog-wrapper
+				//- 		#owl-blog.owl-carousel.owl-theme
+				//- 			.item
+				//- 				img(src='images/blog/2.jpg', alt='')
+				//- 			.item
+				//- 				img(src='images/blog/3.jpg', alt='')
+				//- 			.item
+				//- 				img(src='images/blog/4.jpg', alt='')
+				//- 	a.animsition-link(href='post.html')
+				//- 		h6 Day Of Photography
+				//- 	.p-box
+				//- 		p Vivamus dapibus rutrum. Etiam in nulla arcu, ut vehicula velit.
+				//- 	a.animsition-link.blog-link.chaffle(href='post.html', data-lang='en') read more
+				//- .blog-box-1.black-background.video
+				//- 	.date
+				//- 		p
+				//- 			span 28/
+				//- 			| mar.2015.
+				//- 			em John Doe
+				//- 	figure.vimeo
+				//- 		a(href='http://player.vimeo.com/video/112766731')
+				//- 			img(src='images/blog/vimeo.jpg', alt='image')
+				//- 	a.animsition-link(href='post.html')
+				//- 		h6 Icy Rocky Waves
+				//- 	.p-box
+				//- 		p Vivamus dapibus rutrum. Etiam in nulla arcu, ut vehicula velit.
+				//- 	a.animsition-link.blog-link.chaffle(href='post.html', data-lang='en') read more
+				//- .blog-box-1.black-background.quote
+				//- 	.date
+				//- 		p
+				//- 			span 23/
+				//- 			| mar.2015.
+				//- 			em John Doe
+				//- 	h6 "How you look at it is pretty much how you'll see it."
+				//- 	.p-box
+				//- 		p RASHEED OGUNLARU
+				//- 	a.animsition-link.blog-link.chaffle(href='post.html', data-lang='en') read more
+				//- .blog-box-1.black-background.photo
+				//- 	.date
+				//- 		p
+				//- 			span 19/
+				//- 			| mar.2015.
+				//- 			em John Doe
+				//- 	a.animsition-link(href='post.html')
+				//- 		img(src='images/blog/1.jpg', alt='')
+				//- 	a.animsition-link(href='post.html')
+				//- 		h6 Modern Web Design
+				//- 	.p-box
+				//- 		p Donec vel mi sem. Etiam in nulla arcu, ut vehicula velit. Vivamus dapibus rutrum mi ut aliquam. In hac habitasse platea dictumst.
+				//- 	a.animsition-link.blog-link.chaffle(href='post.html', data-lang='en') read more
+				//- .blog-box-1.black-background.video
+				//- 	.date
+				//- 		p
+				//- 			span 16/
+				//- 			| mar.2015.
+				//- 			em John Doe
+				//- 	figure.vimeo
+				//- 		a(href='http://player.vimeo.com/video/88883554')
+				//- 			img(src='images/blog/vimeo-1.jpg', alt='image')
+				//- 	a.animsition-link(href='post.html')
+				//- 		h6 Web Design Conference
+				//- 	.p-box
+				//- 		p Vivamus dapibus rutrum. Etiam in nulla arcu, ut vehicula velit. Donec vel mi sem. Etiam in nulla arcu, ut vehicula velit. Vivamus dapibus rutrum mi ut aliquam. In hac habitasse platea dictumst.
+				//- 	a.animsition-link.blog-link.chaffle(href='post.html', data-lang='en') read more
+				//- .blog-box-1.black-background.quote
+				//- 	.date
+				//- 		p
+				//- 			span 09/
+				//- 			| mar.2015.
+				//- 			em John Doe
+				//- 	h6 "Recognizing the need is the primary for design."
+				//- 	.p-box
+				//- 		p CHARLES EAMES
+				//- 	a.animsition-link.blog-link.chaffle(href='post.html', data-lang='en') read more
+				//- .blog-box-1.black-background.photo
+				//- 	.date
+				//- 		p
+				//- 			span 07/
+				//- 			| mar.2015.
+				//- 			em John Doe
+				//- 	a.animsition-link(href='post.html')
+				//- 		img(src='images/blog/6.jpg', alt='')
+				//- 	a.animsition-link(href='post.html')
+				//- 		h6 Photo By Henk
+				//- 	.p-box
+				//- 		p Donec vel mi sem. Etiam in nulla arcu, ut vehicula velit.
+				//- 	a.animsition-link.blog-link.chaffle(href='post.html', data-lang='en') read more
+				//- .blog-box-1.black-background.quote
+				//- 	.date
+				//- 		p
+				//- 			span 05/
+				//- 			| mar.2015.
+				//- 			em John Doe
+				//- 	h6 "The difficulty lies not so much in developing new ideas as in escaping from old ones."
+				//- 	.p-box
+				//- 		p JOHN MAYNARD KEYNES
+				//- 	a.animsition-link.blog-link.chaffle(href='post.html', data-lang='en') read more
+		.clear

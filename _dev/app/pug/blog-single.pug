@@ -1,0 +1,268 @@
+extends ./skeleton/tmpl.pug
+
+block main
+	main.cd-main-content
+
+		|
+		| <?php if($post) : 
+		| the_post(); ?>
+		|
+
+		.section
+			.container.header-big-text
+				.twelve.columns
+					.title-page-text.padding-top-bottom-title
+						h2 <?php the_title(); ?>
+						p <?php the_time('j F Y'); ?>
+		.clear
+		.section.padding-bottom
+			.container
+				.nine.columns
+					| <?php $link_trumb = get_the_post_thumbnail_url();
+					| if($link_trumb) : ?>
+					.post-trumb.img-wrap
+						img(src!='<?php echo $link_trumb; ?>', alt='')
+
+					| <?php endif; ?>
+
+					.post-block
+						| <?php 
+						| $html = str_get_html('<div>' . get_the_content() . '</div>');
+						| $count = 0;
+						| foreach($html->find('div',0) -> children() as $block_html) : ?>
+						//- | <?php print_r($block_html->getAllAttributes ()) ?>
+						| <?php $iframe = str_get_html('<div>' . $block_html . '</div>')->find('iframe', 0); ?>
+						| <?php $music = str_get_html('<div>' . $block_html . '</div>')->find('music', 0); ?>
+						//- | $gallery = $block_html->find('.wp-block-gallery', 0); ?>
+						
+						//- Вывод iframe
+						| <?php if($iframe) : ?>
+						.video-wrapper
+							figure
+								| <?php echo $iframe; ?>
+
+						//- вывод галереи
+						| <?php elseif($block_html->hasClass('wp-block-gallery')) : ?>
+
+						.post-block-slider.owl-carousel.owl-theme
+							| <?php foreach($block_html->find('img') as $img) : ?>
+							.item
+								| <?php
+								| echo $img; ?>
+							| <?php endforeach; ?>
+						
+						//- Вывод музыки
+						| <?php elseif($music) :
+						| $band = $music->getAttribute ('band');
+						| $album = $music->getAttribute ('album'); 
+						
+						| foreach($music_BD[$band]['albums'] as $key => $albumItem):
+						|	if($albumItem[albumName] = $album) :
+						
+						| $album_BD = $music_BD[$band]['albums'][$key]; ?>
+						
+						.post-block-music.project-details
+							//- h5 <?php echo $album_BD[0]['albumName']; ?>
+							.listOfSongs(id!="<?php echo $album_BD[0]['marker'] . '_songname'; ?>")
+								| <?php 
+								| $num = '1 isPlayed';
+								| for ($i = 1; $i < count($album_BD); $i++) : ?>
+
+								div(class!="<?php echo $num; ?>") <?php echo $album_BD[$i][0]; ?>
+
+								| <?php 
+								| $num = $i + 1;
+								| endfor;
+								| ?>
+
+							div(id!="<?php echo $album_BD[0]['container']; ?>" data-release-BD!="<?php echo $album_BD[0]['name_this_BD']; ?>").waveform-wrapper
+
+							.transp-bar
+								ul
+									<?php if($album_BD[0]['type'] === 'single'): ?>
+									li
+										img(src!="<?php echo get_template_directory_uri() ?>/img/knobempty.png")
+									<?php else: ?>
+									li(id!="<?php echo $album_BD[0]['marker'] . '_prev'; ?>")
+										img(src!="<?php echo get_template_directory_uri() ?>/img/knobprev_black.png")
+									<?php endif; ?>
+									
+									li
+										img(id!="<?php echo $album_BD[0]['marker'] . '_pause'; ?>" src!="<?php echo get_template_directory_uri() ?>/img/knobpause_black.png" style="opacity: 0; position: absolute;")
+										img(id!="<?php echo $album_BD[0]['marker'] . '_play'; ?>" src!="<?php echo get_template_directory_uri() ?>/img/knobplay_black.png")
+
+									<?php if($album_BD[0]['type'] === 'single'): ?>
+									li
+										img(src!="<?php echo get_template_directory_uri() ?>/img/knobempty.png")
+									<?php else: ?>
+									li(id!="<?php echo $album_BD[0]['marker'] . '_next'; ?>")
+										img(src!="<?php echo get_template_directory_uri() ?>/img/knobnext_black.png")
+									<?php endif; ?>
+
+							//- p
+							//- p
+							//- 	strong release:
+							//- 	| <?php echo $album_BD[0]['date']; ?>
+							//- p
+							//- 	strong studio:
+							//- 	| <?php echo $album_BD[0]['studio']; ?>
+						.clear
+
+						| <?php endif;
+						| endforeach; ?>
+						
+						//- обычный вывод
+						| <?php
+						| else:
+						| echo $block_html; ?>
+
+						| <?php
+						| endif;
+						| endforeach;
+						| ?>
+
+						//- .post-date
+						//- 	<?php the_time('j.M.Y.'); ?>
+						.tags-block.grey-background
+							|
+							| <?php 
+							|	$posttags = get_the_tags();
+							|	if( $posttags ){
+							|		foreach( $posttags as $tag ){
+							| ?>
+							//- |			echo $tag->name . ' '; 
+
+							a(href!='<?php echo get_tag_link($tag->term_id); ?>') <?php echo $tag->name; ?>
+							//- a(href='#') video
+							//- a(href='#') audio
+							//- a(href='#') photo
+
+							|
+							| <?php 
+							|		}
+							|	}
+							| ?>
+
+							//- потому что автор
+							//- a.autor-link(href='#') <?php the_author(); ?>
+						.clear
+						form#ajax-form(name='ajax-form', action='', method='post')
+							label(for='name')
+								span#err-name.error please enter name
+							input#name(name='name', type='text', placeholder='Имя: *')
+							label(for='email')
+								span#err-email.error please enter e-mail
+								span#err-emailvld.error e-mail is not a valid format
+							input#email(name='email', type='text', placeholder='E-Mail: *')
+							label(for='message')
+							textarea#message(name='message', placeholder='Комментарий')
+							#button-con
+								button#send(class='send_message button button--moema button--text-thick button--text-upper button--size-s', data-lang='en') Отправить
+							.clear
+							#err-form.error.text-align-center There was a problem validating the form please check!
+							#err-timedout.error.text-align-center The connection to the server timed out!
+							#err-state.error
+						.clear
+						#ajaxsuccess Successfully sent!!
+						.clear
+				
+				.three.columns
+					.post-sidebar
+						input(name='search', type='text', placeholder='кто ищет, тот найдет')
+						.separator-sidebar
+						h6 Другие посты
+						.link-recents
+							| <?php 
+							| $arg = array(
+							| 	'category' => 2,
+							//- | 	'numberposts' => 6,
+							|		'showposts' => 6,
+							|   'orderby' => 'rand',
+							|   'order'    => 'ASC'
+							| );
+							|
+							| $posts = get_posts($arg);
+							//- | print_r($posts);
+							| if ($posts) :
+							| foreach ($posts as $other_post) :	
+							| ?>									
+							
+							a(href!="<?php the_permalink($other_post->ID); ?>") <?php echo $other_post->post_title; ?>
+
+							| <?php 
+							|	endforeach;
+							| endif;
+							| ?>
+
+						.separator-sidebar
+
+
+						h6 Последние релизы
+						.lat-pro
+							| <?php 
+							| $arg = array(
+							| 	'category' => 2,
+							| 	'numberposts' => 4,
+							| 	'tag' => 'releases'
+							| );
+							|
+							| $posts = get_posts($arg);
+							//- | print_r($posts);
+							| if ($posts) :
+							| foreach ($posts as $release_post) :	
+							| $link_img = get_the_post_thumbnail_url($release_post->ID);
+							| if($link_img) :
+							| ?>									
+							
+							a(href!='<?php the_permalink($release_post->ID); ?>')
+								.lat-pro-img
+									img(src!='<?php echo $link_img; ?>', alt='')
+
+							| <?php 
+							| endif;
+							|	endforeach;
+							| endif;
+							| ?>
+
+						.separator-sidebar
+
+						h6 Хэштеги
+						.link-tag
+							|
+							| <?php 
+							|	$posttags = get_tags();
+							|	if( $posttags ){
+							|		foreach( $posttags as $tag ){
+							| ?>
+							a(href!='<?php echo get_tag_link($tag->term_id); ?>') <?php echo $tag->name; ?>
+							//- a(href='#') Art
+							//- a(href='#') Articles
+							//- a(href='#') Audio
+							//- a(href='#') Business
+							//- a(href='#') Culture
+							//- a(href='#') Development
+							//- a(href='#') Ecology
+							//- a(href='#') Events
+							//- a(href='#') Information
+							//- a(href='#') Inspiration
+							//- a(href='#') Nature
+							//- a(href='#') Opportunities
+							//- a(href='#') Science
+							//- a(href='#') Trends
+							//- a(href='#') Video
+							
+							|
+							| <?php 
+							|		}
+							|	}
+							| ?>
+
+						.separator-sidebar
+						
+						//- h6 Видео
+						//- iframe(src='http://player.vimeo.com/video/96696089?title=0&amp;byline=0&amp;portrait=0&amp;color=cfa144', width='940', height='450')
+						//- .separator-sidebar
+
+
+		| <?php endif; ?>
+		.clear
