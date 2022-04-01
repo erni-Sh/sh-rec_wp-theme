@@ -3,6 +3,7 @@ _dev/node_modules/
 
 # misc
 .DS_Store
+Thumbs.db
 .env.local
 .env.development.local
 .env.test.local

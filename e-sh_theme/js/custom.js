@@ -2189,8 +2189,8 @@ function videoContent(database) {
 			// let release_BD = $(this).data('release-bd');
 			let release_slug = $(this).attr('id');
 			// console.log(release_slug);
-			let winHeight = $(window).height();
-		  let scrollToElem = target.offset().top - $(window).height() + 150;
+			// let winHeight = $(window).height();
+		 //  let scrollToElem = target.offset().top - $(window).height() + 150;
 
 		  initWaveForm(release_slug);
 

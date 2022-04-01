@@ -28,13 +28,12 @@ gulp.task('scss', function(){
       }))
     .pipe(rename({suffix: '.min'}))
     .pipe(sourcemaps.write('.', {includeContent: false, sourceRoot: 'static/css'}))
-    .pipe(gulp.dest('../www/wp-content/themes/e-sh_theme/css'))
+    .pipe(gulp.dest('../e-sh_theme/css'))
 });
 
 gulp.task('pug', function(){
   return gulp.src([
     'app/pug/**/*.pug',
-    '!app/pug/includes/**/*',
     '!app/pug/skeleton/**/*'
     ])
     .pipe(pug({pretty: true}).on('error', notify.onError({
@@ -42,7 +41,7 @@ gulp.task('pug', function(){
         title: "PUG ERROR"
     })))
     .pipe(rename({ extname: '.php' }))
-    .pipe(gulp.dest('../www/wp-content/themes/e-sh_theme/'))
+    .pipe(gulp.dest('../e-sh_theme/'))
 });
 
 // gulp.task('pug-local', function(){
@@ -113,7 +112,7 @@ gulp.task('js', function () {
   ])
     // .pipe(uglify())
     .pipe(concat('custom.js'))
-    .pipe(gulp.dest('../www/wp-content/themes/e-sh_theme/js'));
+    .pipe(gulp.dest('../e-sh_theme/js'));
 });
 
 
@@ -128,48 +127,47 @@ gulp.task('js', function () {
 //   });
 // });
 
-// gulp.task( 'deploy', function () {
+gulp.task( 'deploy', function () {
  
-//     var conn = ftp.create({
-//         host:     '31.31.196.77',
-//         port:     '21',
-//         user:     'u0545248_ernest',
-//         password: '2D5w5Z8g',
-//         parallel: 10,
-//         timeOffset: 120, // смещение часового пояса сервера
-//         log:      gutil.log
-//     });
+    var conn = ftp.create({
+        host:     '31.31.196.77',
+        port:     '21',
+        user:     'u0545248_ernest',
+        password: '2D5w5Z8g',
+        parallel: 10,
+        timeOffset: 120, // смещение часового пояса сервера
+        log:      gutil.log
+    });
  
-//     var globs = [ // запрет на синхронизацию
-//         '../www/**',
-        
-//         '!sftp-config.json',
-//     ];
-//     // using base = '.' will transfer everything to /public_html correctly
-//     return gulp.src( globs, { base: '.', buffer: false } )
-//         .pipe( conn.newer( 'ernestsheremet.com/www/' )) // only upload newer files
-//         .pipe( conn.dest( '/ernestsheremet.com/www/' ) )
-//         .pipe(notify({
-//           message: "Да ты крут, чувак)",
-//           title: "ЗАГРУЖЕНО НА СЕРВЕР!",
-//           onLast: true
-//         }));
-// });
-
-// gulp.task('watch', function(){
-//   gulp.watch('app/scss/**/*.scss', gulp.series('scss','deploy'));
-//   gulp.watch('app/pug/**/*.pug', gulp.series('pug','deploy'));
-//   gulp.watch('app/js/**/*.js', gulp.series('js','deploy'));
-// });
-
-gulp.task('watch-local', function(done){
-  gulp.watch('app/scss/**/*.scss', gulp.series('scss'));
-  gulp.watch('app/pug/**/*.pug', gulp.series('pug'));
-  gulp.watch('app/js/**/*.js', gulp.series('js'));
-  done();
+    var globs = [ // запрет на синхронизацию
+        '../e-sh_theme/**',
+        '!sftp-config.json',
+    ];
+    // using base = '.' will transfer everything to /public_html correctly
+    return gulp.src( globs, { base: '.', buffer: false } )
+        .pipe( conn.newer( '/sheremetrecords.com/wp-content/themes/e-sh_theme/' )) // only upload newer files
+        .pipe( conn.dest( '/sheremetrecords.com/wp-content/themes/e-sh_theme/' ) )
+        .pipe(notify({
+          message: "Да ты крут, чувак)",
+          title: "ЗАГРУЖЕНО НА СЕРВЕР!",
+          onLast: true
+        }));
 });
 
+gulp.task('watch', function(){
+  gulp.watch('app/scss/**/*.scss', gulp.series('scss','deploy'));
+  gulp.watch('app/pug/**/*.pug', gulp.series('pug','deploy'));
+  gulp.watch('app/js/**/*.js', gulp.series('js','deploy'));
+});
+
+// gulp.task('watch-local', function(done){
+//   gulp.watch('app/scss/**/*.scss', gulp.series('scss'));
+//   gulp.watch('app/pug/**/*.pug', gulp.series('pug'));
+//   gulp.watch('app/js/**/*.js', gulp.series('js'));
+//   done();
+// });
+
 // -------------------------------------------------
-gulp.task('default', gulp.series('scss', 'pug', 'js', 'watch-local'));
+gulp.task('default', gulp.series('scss', 'pug', 'js', 'deploy', 'watch', ));
 
 // gulp.task('default', gulp.series('scss', 'pug-local', 'js', 'watch-local', 'browser-sync'))
