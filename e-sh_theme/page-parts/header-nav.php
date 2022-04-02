@@ -9,12 +9,11 @@
 <nav>
   <div class="cd-primary-nav">
     <ul class="cd-scndr-nav">
-      <li class="cd-label"><a class="curent-nav-color js-scroll" href="#top">Главная</a></li>
-      <li class="cd-label"><a class="js-scroll" href="#artists">Артисты</a></li>
-      <li class="cd-label"><a class="js-scroll" href="#price">Стоимость</a></li>
-      <li class="cd-label"><a class="js-scroll" href="#aboutme">Обо мне</a></li>
-      <li class="cd-label"><a class="js-scroll" href="#feedback">Отзывы</a></li>
-      <li class="cd-label"><a class="js-scroll" href="#contact">Контакты				</a></li>
+      <li class="cd-label"><a class="curent-nav-color js-scroll" href="/#top">Главная</a></li>
+      <li class="cd-label"><a class="js-scroll" href="/#artists">Артисты</a></li>
+      <li class="cd-label"><a class="js-scroll" href="/#price">Стоимость</a></li>
+      <li class="cd-label"><a class="js-scroll" href="/#aboutme">Обо мне</a></li>
+      <li class="cd-label"><a class="js-scroll" href="/#contact">Контакты				</a></li>
       <li class="cd-label"><a class="js-scroll" href="/faq">F.A.Q</a></li>
       <li class="cd-label"><a class="js-scroll" href="/blog">Блог			</a></li>
     </ul>

@@ -32,25 +32,17 @@ add_filter( 'show_admin_bar', '__return_false');
 // ВЫВОД МУЗЫКИ
 include (TEMPLATEPATH . "/functions/music_BD.php");
 
-if ( ! function_exists( 'fastPlayer' )) :
-	function fastPlayer($database = null) {
-		include (TEMPLATEPATH . "/elements/view-FCH-audio.php");
-	};
-endif;
+function fastPlayer($database = null) {
+	include (TEMPLATEPATH . "/elements/view-FCH-audio.php");
+};
 
-if ( ! function_exists( 'getArtistCard' )) :
-	function getArtistCard($band_name = null, $band_BD = null, $id = null) {
-		include (TEMPLATEPATH . "/elements/artist-card.php");
-	};
-endif;
+function getArtistCard($band_name = null, $band_BD = null, $id = null) {
+	include (TEMPLATEPATH . "/elements/artist-card.php");
+};
 
-if ( ! function_exists( 'getMusicAlbum' )) :
-	function getMusicAlbum($album_BD = null) {
-		include (TEMPLATEPATH . "/elements/music-album-card.php");
-	}
-endif;
-
-
+function getMusicAlbum($album_BD = null) {
+	include (TEMPLATEPATH . "/elements/music-album-card.php");
+}
 
 if ( ! function_exists( 'get_music_BD_ajax' )) :
 
@@ -151,6 +143,17 @@ if ( ! function_exists( 'get_new_cards' ) ) {
 		endif;
 
 		// wp_die();
+	}
+};
+
+add_action('wp_ajax_save_peaks', 'save_peaks');
+add_action('wp_ajax_nopriv_save_peaks', 'save_peaks');
+// возможно отдельную функцию-оболчку для ajax
+if ( ! function_exists( 'save_peaks' ) ) {
+	function save_peaks() {
+		// header('Content-Type: text/html; charset=utf-8');
+		// file_put_contents(iconv("UTF-8", "windows-1251", '/var/www/u0545248/data/www/sheremetrecords.com' . $_POST['fileName']), $_POST['peaks']);
+		file_put_contents('..' . $_POST['fileName'], $_POST['peaks']);
 	}
 };
 

@@ -35,7 +35,7 @@
           </div>
           <div class="container">
             <div class="twelve columns">
-              <div class="fast_audio_check"><?php fastPlayer($music_BD[fast_audio_check]); ?></div>
+              <div class="fast_audio_check"><?php fastPlayer($music_BD['fast_audio_check']); ?></div>
             </div>
           </div>
         </div>
@@ -250,55 +250,6 @@
         </div>
       </div>
       <div class="clear"></div>
-      <!-- ============== VK Coments ==========================-->
-      <div class="section padding-top-bottom-small">
-        <div class="container header-big-text">
-          <div class="twelve columns">
-            <div class="title-page-text padding-top-bottom-title">
-              <h2 id="feedback">Отзывы</h2>
-              <!-- <p>Ценностность</p>-->
-            </div>
-          </div>
-        </div>
-        <div class="twelve columns">
-          <div class="container">
-            <div id="vk_comments"></div>
-          </div>
-        </div>
-      </div>
-      <!-- =====================================-->
-      <div class="clear"></div>
-      <div class="section padding-top-bottom-small black-background">
-        <div class="container">
-          <div class="four columns">
-            <div class="contact-block">
-              <div class="text">
-                <h6>Звони:</h6>
-                <p><span>&#xf095;</span><a href="tel:+79633062201">+7(963)306-22-01</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="four columns">
-            <div class="contact-block">
-              <div class="text">
-                <h6>Приходи:</h6>
-                <p><span>&#xf041;</span>Санкт-Петербург, наб.Черной речки 41В</p>
-              </div>
-            </div>
-          </div>
-          <div class="four columns">
-            <div class="contact-block">
-              <div class="text">
-                <h6>Пиши:</h6>
-                <p><span>&#xf0e0;</span><a href="mailto:ernest22@mail.ru?subject=Нужен звукорежиссер">ernest22@mail.ru</a></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="clear"></div>
-      <!-- =========================== ОБРАТНАЯ СВЯЗЬ ========================================-->
-      <div class="clear"></div>
       <div class="section">
         <div class="container header-big-text">
           <div class="twelve columns">
@@ -351,10 +302,6 @@
       </div>
     </main>
     <script type="text/javascript" src="https://vk.com/js/api/openapi.js?167"></script>
-    <script type="text/javascript">
-      VK.init({apiId: 2759661, onlyWidgets: true});
-      VK.Widgets.Comments("vk_comments", {limit: 10, attach: "*"});
-    </script>
     <?php get_footer(); ?>
     
   </body>

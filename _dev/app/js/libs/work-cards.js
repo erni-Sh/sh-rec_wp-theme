@@ -117,7 +117,10 @@ var demo = (function(window, undefined) {
       // var cardClose = $(card).find(SELECTORS.cardClose);
 
       // $(cardImage).on('click', _playSequence.bind(this, true, i));   
-      // $(cardClose).on('click', _playSequence.bind(this, false, i));
+      // $(cardClose).on('click', () => {
+      //   _playSequence.bind(this, false, i);
+      //   window.location.hash = '';
+      // });
 
     });
   };

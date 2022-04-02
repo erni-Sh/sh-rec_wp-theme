@@ -56,7 +56,7 @@
               $band = $music->getAttribute ('band');
               $album = $music->getAttribute ('album'); 
               foreach($music_BD[$band]['albums'] as $key => $albumItem):
-              	if($albumItem[albumName] = $album) :
+              	if($albumItem['albumName'] = $album) :
               $album_BD = $music_BD[$band]['albums'][$key]; ?>
               <div class="post-block-music project-details">
                 <div class="listOfSongs" id="<?php echo $album_BD[0]['marker'] . '_songname'; ?>">

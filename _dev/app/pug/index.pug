@@ -23,7 +23,7 @@ block main
         .container
           .twelve.columns
             .fast_audio_check
-              | <?php fastPlayer($music_BD[fast_audio_check]); ?>
+              | <?php fastPlayer($music_BD['fast_audio_check']); ?>
     
     // =================== ARTISTs ===========================
     .container-1
@@ -230,42 +230,43 @@ block main
             br
             p &#9679; занимается разработкой автоматических музыкальных сервисов
             br
-    .clear
-    // ============== VK Coments ==========================
-    .section.padding-top-bottom-small
-      .container.header-big-text
-        .twelve.columns
-          .title-page-text.padding-top-bottom-title
-            h2#feedback Отзывы
-            // <p>Ценностность</p>
-      .twelve.columns
-        .container
-          #vk_comments
-    // =====================================
-    .clear
-    .section.padding-top-bottom-small.black-background
-      .container
-        .four.columns
-          .contact-block
-            .text
-              h6 Звони:
-              p
-                span &#xf095;
-                a(href='tel:+79633062201') +7(963)306-22-01
-        .four.columns
-          .contact-block
-            .text
-              h6 Приходи:
-              p
-                span &#xf041;
-                | Санкт-Петербург, наб.Черной речки 41В
-        .four.columns
-          .contact-block
-            .text
-              h6 Пиши:
-              p
-                span &#xf0e0;
-                a(href='mailto:ernest22@mail.ru?subject=Нужен звукорежиссер') ernest22@mail.ru
+    //- .clear
+    //- ============== VK Coments ==========================
+    //- .section.padding-top-bottom-small
+    //-   .container.header-big-text
+    //-     .twelve.columns
+    //-       .title-page-text.padding-top-bottom-title
+    //-         h2#feedback Отзывы
+    //-         // <p>Ценностность</p>
+    //-   .twelve.columns
+    //-     .container
+    //-       #vk_comments
+    //- =====================================
+    //- .clear
+    //- .section.padding-top-bottom-small.black-background
+    //-   .container
+    //-     .four.columns
+    //-       .contact-block
+    //-         .text
+    //-           h6 Звони:
+    //-           p
+    //-             span &#xf095;
+    //-             a(href='tel:+79633062201') +7(963)306-22-01
+    //-     .four.columns
+    //-       .contact-block
+    //-         .text
+    //-           h6 Приходи:
+    //-           p
+    //-             span &#xf041;
+    //-             | Санкт-Петербург, наб.Черной речки 41В
+    //-     .four.columns
+    //-       .contact-block
+    //-         .text
+    //-           h6 Пиши:
+    //-           p
+    //-             span &#xf0e0;
+    //-             a(href='mailto:ernest22@mail.ru?subject=Нужен звукорежиссер') ernest22@mail.ru
+    //- ===================== КАРТА ==========================
     //- .clear
     //- .section
     //-   #cd-google-map
@@ -275,8 +276,8 @@ block main
     //-     address наб.Черной речки, 41В
     //-       br
     //-       | Санкт-Петербург
-    .clear
-    // =========================== ОБРАТНАЯ СВЯЗЬ ========================================
+    //- .clear
+    //- =========================== ОБРАТНАЯ СВЯЗЬ ========================================
     .clear
     .section
       .container.header-big-text
@@ -323,7 +324,9 @@ block main
       // ====================================================
 
   //- скрипты локальных страниц
+
+
   script(type='text/javascript' src='https://vk.com/js/api/openapi.js?167')
-  script(type='text/javascript').
-    VK.init({apiId: 2759661, onlyWidgets: true});
-    VK.Widgets.Comments("vk_comments", {limit: 10, attach: "*"});
+  //- script(type='text/javascript').
+  //-   VK.init({apiId: 2759661, onlyWidgets: true});
+  //-   VK.Widgets.Comments("vk_comments", {limit: 10, attach: "*"});

@@ -49,7 +49,6 @@
 			})
 			.then(res=>res.json())
 			// .then(console.log)
-			// .then(fastPlayer)
 			.then(musicAlbum)
 
      //  $.ajax({

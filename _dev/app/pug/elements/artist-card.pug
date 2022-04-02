@@ -3,32 +3,32 @@
 		a(href!="<?php echo '#' . $band_name; ?>" data-id!='<?php echo $id; ?>')
 			svg(class="card__image" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 500" preserveAspectRatio="xMidYMid slice")
 				defs
-					clippath(id!='<?php echo $band_BD[bandDiv]; ?>')
+					clippath(id!="<?php echo $band_BD['bandDiv']; ?>")
 						circle.clip(cx="960" cy="250" r="992")
-				image(clip-path!="url(#<?php echo $band_BD[bandDiv]; ?>)" width="1920" height="600" xlink:href!="<?php echo $band_BD[foto]; ?>")
+				image(clip-path!="url(#<?php echo $band_BD['bandDiv']; ?>)" width="1920" height="600" xlink:href!="<?php echo $band_BD['foto']; ?>")
 			
 
 		div(class="card__content")
-			a(href!='#')
+			a(href!='#!')
 				i(class="card__btn-close fa fa-times")
 			div(class="card__caption")
-				h2(class="card__title") <?php echo $band_BD[bandName]; ?>
-				p(class="card__subtitle") <?php echo $band_BD[genre]; ?>
+				h2(class="card__title") <?php echo $band_BD['bandName']; ?>
+				p(class="card__subtitle") <?php echo $band_BD['genre']; ?>
 			div(class="card__copy")
-				.container(class!='<?php echo $band_BD[bandDiv]; ?>')
+				.container(class!="<?php echo $band_BD['bandDiv']; ?>")
 					//- | <?php print_r($band_BD) ?>
-					| <?php echo $band_BD[description]; ?>
+					| <?php echo $band_BD['description']; ?>
 					br
 					| <?php 
-					|	foreach($band_BD[albums] as $album_BD) {
+					|	foreach($band_BD['albums'] as $album_BD) {
 					|		getMusicAlbum($album_BD);
 					|	};
 					| ?>
 
 					//- YOUTUBE
 					//- | <?php
-					//- | if($band_BD[youtube]) :
-					//- | foreach($band_BD[youtube] as $video_code) : ?>
+					//- | if($band_BD['youtube']) :
+					//- | foreach($band_BD['youtube'] as $video_code) : ?>
 					//- .six.columns
 					//- 	figure.youtube
 					//- 		iframe(width="560" height="315" src!="https://www.youtube.com/embed/<?php echo $video_code; ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
