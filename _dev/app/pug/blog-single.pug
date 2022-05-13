@@ -57,12 +57,14 @@ block main
 						| $album = $music->getAttribute ('album'); 
 						
 						| foreach($music_BD[$band]['albums'] as $key => $albumItem):
+						| echo $albumItem['albumName'];
 						|	if($albumItem['albumName'] = $album) :
 						
 						| $album_BD = $music_BD[$band]['albums'][$key]; ?>
 						
 						.post-block-music.project-details
-							//- h5 <?php echo $album_BD[0]['albumName']; ?>
+							//- h5 <?php echo $album; ?>
+							//- h5 <?php echo $albumItem['albumName']; ?>
 							.listOfSongs(id!="<?php echo $album_BD[0]['marker'] . '_songname'; ?>")
 								| <?php 
 								| $num = '1 isPlayed';

@@ -228,8 +228,21 @@ $music_BD = array(
 				['No Woman means No Pain', 		'/media/Meantraitors/DWH/10 No Woman means No Pain.mp3'],
 				['Guilty Forever', 				'/media/Meantraitors/DWH/11 Guilty Forever.mp3'],
 			),
-
-		)
+			array(
+				[
+					'bandDiv' => 		'MEANTRAITORS',
+					'albumName' => 	'Арбатский Эмигрант',
+					'type' => 			'single',
+					'date' => 			'May 9, 2022',
+					'studio' => 		'home studio',
+					'cover' => 			'/media/Meantraitors/AE/MeantraitorsEA.jpg',
+					'container' => 	'waveMNTRTS_AE',
+					'marker' => 		'MNTRTS_AE',
+					'curState' =>   'unplayed',
+				],
+				['Арбатский Эмигрант', 		'/media/Meantraitors/AE/Арбатский эмигрант.mp3'],
+			),
+		)		
 	),
 
 	'STiho' => array(
