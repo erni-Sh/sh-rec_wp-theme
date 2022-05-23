@@ -10,7 +10,8 @@ const gulp = require('gulp'),
       concat = require('gulp-concat'),
       wait = require('gulp-wait'),
       gutil = require('gutil'),
-      ftp = require('vinyl-ftp');
+      ftp = require('vinyl-ftp'),
+      keys = require('./config_secret.js');
 
 
 gulp.task('scss', function(){
@@ -130,10 +131,10 @@ gulp.task('js', function () {
 gulp.task( 'deploy', function () {
  
     var conn = ftp.create({
-        host:     '31.31.196.77',
-        port:     '21',
-        user:     'u0545248_ernest',
-        password: '2D5w5Z8g',
+        host:     keys.host,
+        port:     keys.port,
+        user:     keys.user,
+        password: keys.password,
         parallel: 10,
         timeOffset: 120, // смещение часового пояса сервера
         log:      gutil.log
